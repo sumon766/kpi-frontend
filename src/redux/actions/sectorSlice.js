@@ -1,0 +1,42 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const initialState = {
+    loading: false,
+    sectors: [],
+    error: ''
+};
+
+export const fetchSectors = createAsyncThunk('sectors/fetchSectors', async () => {
+    try {
+        const response = await axios.get('http://127.0.0.1:8000/api/sectors');
+        return response.data;
+    }
+    catch (error) {
+        throw error.response.data;
+    }
+});
+
+const sectorSlice = createSlice({
+    'name': 'user',
+    initialState,
+    extraReducers: (builder) => {
+        builder.addCase(fetchSectors.pending, (state) => {
+            state.loading = true
+        });
+
+        builder.addCase(fetchSectors.fulfilled, (state, action) => {
+            state.loading = false;
+            state.sectors = action.payload;
+            state.error = '';
+        });
+
+        builder.addCase(fetchSectors.rejected, (state, action) => {
+            state.loading = false;
+            state.sectors = [];
+            state.error = action.payload
+        });
+    }
+});
+
+export default sectorSlice.reducer;
