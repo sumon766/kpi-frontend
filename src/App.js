@@ -5,6 +5,8 @@ import Sectors from "./components/sectors/Sectors";
 import CreateSector from "./components/sectors/CreateSectors";
 import Employees from "./components/employees/Employees";
 import CreateEmployee from "./components/employees/CreateEmployee";
+import Questions from "./components/questions/Questions";
+import CreateQuestion from "./components/questions/CreateQuestions";
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path="/sectors/create" element={<CreateSector />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/employees/create" element={<CreateEmployee />} />
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/questions/create" element={<CreateQuestion />} />
         </Route>
       </Routes>
     </BrowserRouter>
