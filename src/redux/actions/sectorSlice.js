@@ -28,7 +28,7 @@ export const addSector = createAsyncThunk('sectors/addSector', async (sector) =>
 });
 
 const sectorSlice = createSlice({
-    'name': 'user',
+    'name': 'sector',
     initialState,
     extraReducers: (builder) => {
         builder.addCase(fetchSectors.pending, (state) => {
