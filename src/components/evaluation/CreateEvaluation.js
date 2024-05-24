@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEmployees } from "../../redux/actions/employeeSlice";
 import { fetchQuestions } from "../../redux/actions/questionSlice";
+import { setFlashMessage } from "../../redux/actions/flashMessageSlice";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -27,29 +28,27 @@ const CreateEvaluation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        for (const key in evaluationData) {
-            const [employeeId, questionId] = key.split('_');
-            const mark = evaluationData[key];
-            await axios.post('http://127.0.0.1:8000/api/evaluations', {
-                employee_id: employeeId,
-                question_id: questionId,
-                mark
-            });
+        try {
+            for (const key in evaluationData) {
+                const [employeeId, questionId] = key.split('_');
+                const mark = evaluationData[key];
+                await axios.post('http://127.0.0.1:8000/api/evaluations', {
+                    employee_id: employeeId,
+                    question_id: questionId,
+                    mark
+                });
+            }
+            dispatch(setFlashMessage({ message: 'Evaluations submitted successfully!', type: 'success' }));
+            navigate("/");
+        } catch (error) {
+            dispatch(setFlashMessage({ message: 'Failed to submit evaluations.', type: 'error' }));
         }
-        navigate("/");
     };
 
     return (
         <div>
             <h2>Evaluate Employees</h2>
-            <div>
-                <h3>Questions</h3>
-                <ul>
-                    {questions.map(question => (
-                        <li key={question.id}>{question.text}</li>
-                    ))}
-                </ul>
-            </div>
+            
             <form onSubmit={handleSubmit}>
                 <table>
                     <thead>
@@ -88,4 +87,3 @@ const CreateEvaluation = () => {
 };
 
 export default CreateEvaluation;
-
