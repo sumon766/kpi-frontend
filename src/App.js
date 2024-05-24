@@ -7,6 +7,7 @@ import Employees from "./components/employees/Employees";
 import CreateEmployee from "./components/employees/CreateEmployee";
 import Questions from "./components/questions/Questions";
 import CreateQuestion from "./components/questions/CreateQuestions";
+import CreateEvaluation from "./components/evaluation/CreateEvaluation";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/employees/create" element={<CreateEmployee />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/questions/create" element={<CreateQuestion />} />
+          <Route path="/evaluations/create" element={<CreateEvaluation />} />
         </Route>
       </Routes>
     </BrowserRouter>
