@@ -17,6 +17,16 @@ export const fetchSectors = createAsyncThunk('sectors/fetchSectors', async () =>
     }
 });
 
+export const addSector = createAsyncThunk('sectors/addSector', async (sector) => {
+    try {
+        const response = await axios.post('http://127.0.0.1:8000/api/sectors', sector);
+        return response.data;
+    }
+    catch (error) {
+        throw error.response.data;
+    }
+});
+
 const sectorSlice = createSlice({
     'name': 'user',
     initialState,
@@ -36,6 +46,22 @@ const sectorSlice = createSlice({
             state.sectors = [];
             state.error = action.payload
         });
+
+        builder.addCase(addSector.pending, (state) => {
+            state.loading = true;
+        });
+
+        builder.addCase(addSector.fulfilled, (state, action) => {
+            state.loading = false;
+            state.sectors.push(action.payload);
+            state.error = '';
+        });
+
+        builder.addCase(addSector.rejected, (state, action) => {
+            state.loading = false;
+            state.sectors = [];
+            state.error = action.payload;
+        })
     }
 });
 

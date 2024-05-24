@@ -16,9 +16,13 @@ const Sectors = () => {
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
             <ul>
-                {sectors.map((sector) => (
-                    <li key={sector.id}>{sector.name}</li>
-                ))}
+                {sectors.length > 0 ? (
+                    sectors.map((sector) => (
+                        <li key={sector.id}>{sector.name}</li>
+                    ))
+                ) : (
+                    <h3>No sector found</h3>
+                )}
             </ul>
         </div>
     );
