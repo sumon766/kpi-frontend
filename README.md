@@ -81,7 +81,7 @@ Example commands:
 ### Link to the Backend
 
 ```sh
-  https://github.com/sumon766/kpi-backend.git
+  https://github.com/sumon766/kpi-backend
 ```
 
 ### Install
