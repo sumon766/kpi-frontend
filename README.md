@@ -78,6 +78,12 @@ Example commands:
   git clone https://github.com/sumon766/kpi-frontend.git
 ```
 
+### Link to the Backend
+
+```sh
+  https://github.com/sumon766/kpi-backend.git
+```
+
 ### Install
 
 To install and run the project, open the root folder and run:
