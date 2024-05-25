@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
     loading: false,
     employees: [],
-    error: ''
+    error: '',
 };
 
 export const fetchEmployees = createAsyncThunk('employees/fetchEmployees', async () => {
